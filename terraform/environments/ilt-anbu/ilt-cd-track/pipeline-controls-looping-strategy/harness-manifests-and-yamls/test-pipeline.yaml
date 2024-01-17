@@ -1,0 +1,33 @@
+pipeline:
+  stages:
+    - stage:
+        name: Browser Test Stage
+        identifier: Browser_Test_Stage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: Matrix Step
+                  identifier: Matrix_Step
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          #matrix:
+                          #  platform: [windows, mac, linux]
+                          #  browser: [chrome, safari, edge]
+
+                          # here, we should skip the ~mac + safari~ loop, just as an exercise.
+
+
+                          echo "Testing app in <+matrix.browser> on <+matrix.platform>!"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
